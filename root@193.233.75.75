@@ -1,0 +1,53 @@
+import requests 
+import os
+import subprocess
+import time
+import disnake
+import json
+import  os
+import datetime
+from datetime import datetime 
+url = "https://production.io.systems/v1/io-worker/devices/16d63c38-4270-405d-ad5a-1ff73f305d9a/details"
+
+
+
+with open("data.json", "r") as f:
+    data = json.load(f)
+
+    acc = data["access_token"]
+
+
+def  check():
+    response = requests.get(url, headers={"Token": acc})
+
+    return response.json()
+
+
+def check_up():
+
+        
+        response = requests.get(url, headers={"Token": acc})
+
+        data = response.json()
+        status = data.get("data").get("status")
+        if status == "up":
+            return f"scrion is up {datetime.now()} "
+
+
+        else:
+                return f"reloding"
+                command = f"./launch_binary_linux --device_id=43e91776-f7bf-4746-9327-ff80997f3fa3 --user_id=c1e6cd3a-3a69-4f19-8b77-c2ad65ae4784 --operating_system=Linux --usegpus=false --device_name=exampel"
+                if subprocess.run(command, shell=True):
+                    return f"scrion is up {datetime.now()}"
+                else:
+                    return f"scrion is down {datetime.now()}"
+        
+def main():   
+    
+    check_up()
+
+
+
+if __name__ == "__main__":
+    while True:
+        main()
