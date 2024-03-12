@@ -28,4 +28,4 @@ async def auto_stop(ctx):
     auto = False
     await ctx.send("Auto check stopped.")
 
-bot.run("MTIxNjEwMjE4NDc2MDkwNTkxOA.GhlNYi.JBr4xc4Gz3KTLgOh5wCGKgeQ6EtiSSjJAaksf4")
+bot.run()
